@@ -23,6 +23,7 @@
         padding: 80px 40px;
         background-color: #f8f9fa;
         text-align: center;
+        margin-top: -90px;
     }
     .hero-text {
         max-width: 800px;
@@ -30,7 +31,10 @@
     .hero-text .welcome-text {
         font-size: 1.5rem;
         font-weight: 600;
-        color:rgb(95, 81, 168);
+        background: linear-gradient(135deg, #14afa0, #6c57d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
     }
     .hero-text .welcome-text span {
         color: #14afa0;
@@ -73,11 +77,10 @@
         background-color: #f8f9fa;
     }
     .carousel-container {
-        max-width: 1100px;
+        max-width: 2000px;
         margin: 0 auto;
-        position: relative;
+        margin-top: -60px;
         overflow: hidden;
-        border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
     .carousel-slide {
@@ -105,6 +108,7 @@
         border: none;
         color: #2d3748;
         font-size: 2rem;
+        margin-top: -150px;
         cursor: pointer;
         border-radius: 50%;
         width: 50px;
@@ -265,6 +269,22 @@
 
 <div class="home-container">
 
+ <!-- Seção do Carrossel de Imagens -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="{{ asset('SRC/Gemini_Generated_Image_rrxvi9rrxvi9rrxv (1).png') }}" alt="Pessoas conversando em um ambiente acolhedor">
+                <img src="{{ asset('SRC/Gemini_Generated_Image_rrxvi9rrxvi9rrxv (2).png') }}" alt="Grupo de amigos se apoiando">
+                <img src="{{ asset('SRC/Gemini_Generated_Image_gl5aojgl5aojgl5a (1).png') }}" alt="Pessoa recebendo ajuda profissional online">
+            </div>
+            <div class="carousel-nav">
+                <button id="prevBtn">&#10094;</button>
+                <button id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Seção Herói -->
     <section class="hero-section">
         <div class="hero-text">
@@ -284,21 +304,6 @@
             @else
                 <a href="{{ route('area-user') }}" class="hero-btn">Ir para Minha Área</a>
             @endauth
-        </div>
-    </section>
-
-    <!-- Seção do Carrossel de Imagens -->
-    <section class="carousel-section">
-        <div class="carousel-container">
-            <div class="carousel-slide">
-                <img src="{{ asset('SRC/vicios.png') }}" alt="Pessoas conversando em um ambiente acolhedor">
-                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" alt="Grupo de amigos se apoiando">
-                <img src="{{ asset('SRC/conexao-empatia.jpg') }}" alt="Pessoa recebendo ajuda profissional online">
-            </div>
-            <div class="carousel-nav">
-                <button id="prevBtn">&#10094;</button>
-                <button id="nextBtn">&#10095;</button>
-            </div>
         </div>
     </section>
 
