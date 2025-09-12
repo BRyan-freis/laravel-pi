@@ -19,12 +19,20 @@
       <!-- TOPO: CARROSSEL + TEXTO -->
       <div class="home-top">
         
-        <!-- CARROSSEL DE IMAGENS -->
-        <div class="carousel">
-          <img src="{{ asset('SRC/vicios.png') }}" class="carousel-image" alt="Imagem 1">
-          <img src="{{ asset('SRC/abraco.png') }}" class="carousel-image" alt="Imagem 2">
-          <img src="{{ asset('SRC/sala-imagem.png') }}" class="carousel-image" alt="Imagem 3">
-        </div>
+        <!-- Seção do Carrossel de Imagens -->
+      <section class="carousel-section">
+          <div class="carousel-container">
+              <div class="carousel-slide">
+                  <img src="{{ asset('SRC/Gemini_Generated_Image_rrxvi9rrxvi9rrxv (1).png') }}" alt="Pessoas conversando em um ambiente acolhedor">
+                  <img src="{{ asset('SRC/Gemini_Generated_Image_rrxvi9rrxvi9rrxv (2).png') }}" alt="Grupo de amigos se apoiando">
+                  <img src="{{ asset('SRC/Gemini_Generated_Image_gl5aojgl5aojgl5a (1).png') }}" alt="Pessoa recebendo ajuda profissional online">
+              </div>
+              <div class="carousel-nav">
+                  <button id="prevBtn">&#10094;</button>
+                  <button id="nextBtn">&#10095;</button>
+              </div>
+          </div>
+      </section>
 
         <!-- TEXTO AO LADO -->
         <div class="home-text">
@@ -62,30 +70,56 @@
     </section>
   </main>
 
-  <!-- SCRIPT DO CARROSSEL -->
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const imagens = document.querySelectorAll('.carousel-image');
-      let index = 0;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lógica do Carrossel
+        const slide = document.querySelector('.carousel-slide');
+        if (slide) {
+            const images = document.querySelectorAll('.carousel-slide img');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let counter = 0;
+            let size = images.length > 0 ? images[0].clientWidth : 0;
 
-      function mostrarImagem(i) {
-        imagens.forEach((img) => {
-          img.classList.remove('active');
-          img.style.opacity = 0;
-        });
-        imagens[i].classList.add('active');
-        imagens[i].style.opacity = 1;
-      }
+            function updateSlidePosition() {
+                if (size > 0) {
+                    slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                }
+            }
+            
+            function nextSlide() {
+                if (images.length === 0) return;
+                if (counter >= images.length - 1) {
+                    counter = 0;
+                } else {
+                    counter++;
+                }
+                updateSlidePosition();
+            }
 
-      function proximaImagem() {
-        index = (index + 1) % imagens.length;
-        mostrarImagem(index);
-      }
+            nextBtn.addEventListener('click', nextSlide);
 
-      mostrarImagem(index);
-      setInterval(proximaImagem, 4000);
+            prevBtn.addEventListener('click', () => {
+                if (images.length === 0) return;
+                if (counter <= 0) {
+                    counter = images.length - 1;
+                } else {
+                    counter--;
+                }
+                updateSlidePosition();
+            });
+            
+            setInterval(nextSlide, 5000);
+
+            window.addEventListener('resize', () => {
+                if (images.length > 0) {
+                    size = images[0].clientWidth;
+                    updateSlidePosition();
+                }
+            });
+        }
     });
-  </script>
+</script>
 </body>
 </html>
 
